@@ -108,8 +108,7 @@ class Invoice extends AccountingInvoice
             $invoice->currency   = isset($object->CurrencyCode) ? $object->CurrencyCode : null;
             $invoice->notes      = isset( $object->Reference ) ? $object->Reference : null;
             $invoice->customerId = $object->CustomerID;
-            $lines = is_array($object->Lines->anyType) ? $object->Lines->anyType : [ $object->Lines->anyType ];
-            foreach ( $lines as $line )
+            foreach ( $object->lines as $line )
             {
                 $item = new Item;
                 $item->description = $line->enc_value->Description;
